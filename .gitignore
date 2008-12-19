@@ -1,0 +1,8 @@
+*.o
+*.dll
+*_stub.*
+*~
+*.a
+*.hi
+tmp
+lib

@@ -1,0 +1,34 @@
+## Compiling a C extension for Ruby on Windows
+
+Assuming you have an extension in c:\src\simple_ext. There must not be 
+any spaces in the name.
+
+Also assume these versions of ruby and the one click installer were used
+initially.
+
+        ruby 1.8.6 (2008-08-11 patchlevel 287) [i386-mswin32]
+        One-click version: Ruby-186-27
+
+Follow these steps to compile an extension under Windows:
+
+1. Download rubyinstaller to c:\src (no spaces)
+2. Download MinGW 5.1.4 (http://sourceforge.net/project/showfiles.php?group_id=2435&package_id=240780&release_id=595197)
+3. Install MinGW to C:\MinGW. Do NOT install MinGW make.
+4. Download MSys 1.0.10 (http://sourceforge.net/project/showfiles.php?group_id=2435&package_id=24963)
+5. Install MSys to c:\msys\1.0
+6. Remove cygwin from path, if it exists.
+7. Set path to c:\WINDOWS\Microsoft.NET\Framework\v2.0.50727;c:\WINDOWS;c:\WINDOWS\system32;c:\WINDOWS\system32\wbem;c:\ruby\bin;c:\MinGW\bin;c:\msys\1.0\bin
+8. "rake default" in rubyinstaller directory.
+9. add sandbox to path: set path=%path%;c:\src\rubyinstaller\sandbox\ruby_mingw\bin
+10. move c:\ruby c:\ruby_x (no longer in path)
+11. reinstall gems - rake, rake-compile
+12. Go to c:\src\simple_exit
+13. 'rake compile' -- Compile your extension
+13. move c:\src\rubyinstaller to c:\src\rubyinstaller_x -- Removes i386-mingw32 ruby from path.
+14. move \ruby_x to \ruby -- put i386-mswin32 ruby back in path.
+15. Start irb.
+16. "require 'lib/simple_ext'"; include MyTest; test1
+17. Result - 10 is output!
+
+All set!
+
